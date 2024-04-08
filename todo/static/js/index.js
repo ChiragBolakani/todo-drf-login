@@ -43,7 +43,7 @@ let activeItem = null;
 let list_snapshot = []
 
 
-if(window.location.href == "http://localhost:8000/"){
+if(window.location.href == "http://16.16.77.97:8000/"){
     buildList();
 }
 async function buildList(){
@@ -51,7 +51,7 @@ async function buildList(){
     const wrapper = document.getElementById('list-wrapper');
     // wrapper.innerHTML = '';
     
-    var url = "http://localhost:8000/api/task-list/?"
+    var url = "http://16.16.77.97:8000/api/task-list/?"
     
     
     let access_token = getCookie('access');
@@ -168,12 +168,12 @@ form_wrapper.addEventListener('submit', async (e)=>{
     e.preventDefault();
     console.log('form submitted');
 
-    var url = "http://localhost:8000/api/task-create/"
+    var url = "http://16.16.77.97:8000/api/task-create/"
     var title = document.getElementById('title').value;
     const form = document.getElementById('form');
 
     if(activeItem!=null){
-       var url = `http://localhost:8000/api/task-update/${activeItem.id}/`
+       var url = `http://16.16.77.97:8000/api/task-update/${activeItem.id}/`
        activeItem = null;
     }
 
@@ -267,7 +267,7 @@ async function deleteitem(item){
         }).catch((err)=>console.error(err));
     }
 
-    var url = `http://localhost:8000/api/task-delete/${item.id}/`
+    var url = `http://16.16.77.97:8000/api/task-delete/${item.id}/`
 
     let user_id = getCookie("user_id")
 
@@ -315,7 +315,7 @@ async function strikeUnstrike(item){
     console.log("striked/unstriked");
     console.log(item);
 
-    var url = `http://localhost:8000/api/task-update/${item.id}/`
+    var url = `http://16.16.77.97:8000/api/task-update/${item.id}/`
     item.completed = !item.completed;
 
     let user_id = getCookie("user_id")    
@@ -386,6 +386,6 @@ document.getElementById('logout').addEventListener('click', (e)=>{
     document.cookie = `refresh=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
     document.cookie = `user=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
     document.cookie = `user_id=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
-    window.location = "http://localhost:8000/login/";
+    window.location = "http://16.16.77.97:8000/login/";
 })
 
