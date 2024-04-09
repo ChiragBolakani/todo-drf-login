@@ -34,7 +34,7 @@ const form_wrapper = document.getElementById('form-wrapper');
 form_wrapper.addEventListener('submit', async (e)=>{
     e.preventDefault();
 
-    var url = "http://16.16.77.97:8000/api/register/"
+    var url = "http://3.109.49.43:8000/api/register/"
     let username = document.getElementById("username").value;
     let email = document.getElementById("email").value;
     let password = document.getElementById("password").value;
@@ -60,7 +60,7 @@ form_wrapper.addEventListener('submit', async (e)=>{
 
     await fetch(url, options)
     .then( (response)=>{
-        if(response.ok) window.location = "http://16.16.77.97:8000/login/"
+        if(response.ok) window.location = "http://3.109.49.43:8000/login/"
         response.json()
         .then((data)=>{
             clearPreviousErrorMessages()

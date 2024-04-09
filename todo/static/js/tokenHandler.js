@@ -17,12 +17,12 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 export let getAccessToken = new Promise( function(resolve, reject){
-    var url = "http://16.16.77.97:8000/api/token/refresh/"
+    var url = "http://3.109.49.43:8000/api/token/refresh/"
 
     let refresh_token = getCookie('refresh');
 
     if(refresh_token==null){
-        window.location = "http://16.16.77.97:8000/login/"
+        window.location = "http://3.109.49.43:8000/login/"
         return
     }
 

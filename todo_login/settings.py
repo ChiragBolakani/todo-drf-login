@@ -76,7 +76,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = ["http://16.16.77.97:8000"]
+CORS_ALLOWED_ORIGINS = ["http://3.109.49.43:8000"]
 
 ROOT_URLCONF = 'todo_login.urls'
 
