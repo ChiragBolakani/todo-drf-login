@@ -35,7 +35,7 @@ form_wrapper.addEventListener('submit', async (e)=>{
     e.preventDefault();
     console.log('form submitted');
 
-    var url = "http://3.109.49.43:8000/api/token/"
+    var url = "http://13.201.37.105:8000/api/token/"
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
@@ -77,7 +77,7 @@ form_wrapper.addEventListener('submit', async (e)=>{
                 document.cookie = `refresh=${data.refresh};expires=${refresh_datetime};path=/`;
                 document.cookie = `user=${data.username};expires=${access_datetime};path=/`;
                 document.cookie = `user_id=${data.user_id};expires=${access_datetime};path=/`;
-                window.location = "http://3.109.49.43:8000";
+                window.location = "http://13.201.37.105:8000";
 
             });
         }else{
