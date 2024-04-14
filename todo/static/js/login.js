@@ -35,7 +35,7 @@ form_wrapper.addEventListener('submit', async (e)=>{
     e.preventDefault();
     console.log('form submitted');
 
-    var url = "http://13.201.37.105:8000/api/token/"
+    var url = "http://localhost:8001/api/token/"
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
@@ -61,11 +61,11 @@ form_wrapper.addEventListener('submit', async (e)=>{
             response.json()
             .then((data)=>{
 
-                let refresh_date_timestamp = Date.parse(data.refresh_expires);
-                let refresh_datetime = new Date(refresh_date_timestamp).toUTCString();
+                let refresh_date_timestamp = data.refresh_expires;
+                let refresh_datetime = new Date(refresh_date_timestamp*1000).toUTCString();
 
-                let access_date_timestamp = Date.parse(data.access_expires);
-                let access_datetime = new Date(access_date_timestamp).toUTCString();
+                let access_date_timestamp = data.access_expires;
+                let access_datetime = new Date(access_date_timestamp*1000).toUTCString();
 
                 let username = data.username
 
@@ -77,7 +77,7 @@ form_wrapper.addEventListener('submit', async (e)=>{
                 document.cookie = `refresh=${data.refresh};expires=${refresh_datetime};path=/`;
                 document.cookie = `user=${data.username};expires=${access_datetime};path=/`;
                 document.cookie = `user_id=${data.user_id};expires=${access_datetime};path=/`;
-                window.location = "http://13.201.37.105:8000";
+                window.location = "http://localhost:8001";
 
             });
         }else{

@@ -43,7 +43,7 @@ let activeItem = null;
 let list_snapshot = []
 
 
-if(window.location.href == "http://13.201.37.105:8000/"){
+if(window.location.href == "http://localhost:8001/"){
     buildList();
 }
 async function buildList(){
@@ -51,7 +51,7 @@ async function buildList(){
     const wrapper = document.getElementById('list-wrapper');
     // wrapper.innerHTML = '';
     
-    var url = "http://13.201.37.105:8000/api/task-list/?"
+    var url = "http://localhost:8001/api/task-list/?"
     
     
     let access_token = getCookie('access');
@@ -62,8 +62,8 @@ async function buildList(){
         // access_token = await getAccessToken
         await getAccessToken
         .then((data)=>{
-            let access_date_timestamp = Date.parse(data.access_expires);
-            let access_datetime = new Date(access_date_timestamp).toUTCString();
+            let access_date_timestamp = data.access_expires;
+            let access_datetime = new Date(access_date_timestamp*1000).toUTCString();
             document.cookie = `access=${data.access};expires=${access_datetime};path=/`;
             document.cookie = `user=${data.username};expires=${access_datetime};path=/`;
             document.cookie = `user_id=${data.user_id};expires=${access_datetime};path=/`;
@@ -168,12 +168,12 @@ form_wrapper.addEventListener('submit', async (e)=>{
     e.preventDefault();
     console.log('form submitted');
 
-    var url = "http://13.201.37.105:8000/api/task-create/"
+    var url = "http://localhost:8001/api/task-create/"
     var title = document.getElementById('title').value;
     const form = document.getElementById('form');
 
     if(activeItem!=null){
-       var url = `http://13.201.37.105:8000/api/task-update/${activeItem.id}/`
+       var url = `http://localhost:8001/api/task-update/${activeItem.id}/`
        activeItem = null;
     }
 
@@ -185,8 +185,8 @@ form_wrapper.addEventListener('submit', async (e)=>{
 
         await getAccessToken
         .then((data)=>{
-            let access_date_timestamp = Date.parse(data.access_expires);
-            let access_datetime = new Date(access_date_timestamp).toUTCString();
+            let access_date_timestamp = data.access_expires;
+            let access_datetime = new Date(access_date_timestamp*1000).toUTCString();
             document.cookie = `access=${data.access};expires=${access_datetime};path=/`;
             document.cookie = `user=${data.username};expires=${access_datetime};path=/`;
             document.cookie = `user_id=${data.user_id};expires=${access_datetime};path=/`;
@@ -257,8 +257,8 @@ async function deleteitem(item){
 
         await getAccessToken
         .then((data)=>{
-            let access_date_timestamp = Date.parse(data.access_expires);
-            let access_datetime = new Date(access_date_timestamp).toUTCString();
+            let access_date_timestamp = data.access_expires;
+            let access_datetime = new Date(access_date_timestamp*1000).toUTCString();
             document.cookie = `access=${data.access};expires=${access_datetime};path=/`;
             document.cookie = `user=${data.username};expires=${access_datetime};path=/`;
             document.cookie = `user_id=${data.user_id};expires=${access_datetime};path=/`;
@@ -267,7 +267,7 @@ async function deleteitem(item){
         }).catch((err)=>console.error(err));
     }
 
-    var url = `http://13.201.37.105:8000/api/task-delete/${item.id}/`
+    var url = `http://localhost:8001/api/task-delete/${item.id}/`
 
     let user_id = getCookie("user_id")
 
@@ -315,7 +315,7 @@ async function strikeUnstrike(item){
     console.log("striked/unstriked");
     console.log(item);
 
-    var url = `http://13.201.37.105:8000/api/task-update/${item.id}/`
+    var url = `http://localhost:8001/api/task-update/${item.id}/`
     item.completed = !item.completed;
 
     let user_id = getCookie("user_id")    
@@ -336,8 +336,8 @@ async function strikeUnstrike(item){
 
         await getAccessToken
         .then((data)=>{
-            let access_date_timestamp = Date.parse(data.access_expires);
-            let access_datetime = new Date(access_date_timestamp).toUTCString();
+            let access_date_timestamp = data.access_expires;
+            let access_datetime = new Date(access_date_timestamp*1000).toUTCString();
             document.cookie = `access=${data.access};expires=${access_datetime};path=/`;
 
             document.cookie = `user=${data.username};expires=${access_datetime};path=/`;
@@ -386,6 +386,6 @@ document.getElementById('logout').addEventListener('click', (e)=>{
     document.cookie = `refresh=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
     document.cookie = `user=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
     document.cookie = `user_id=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`;
-    window.location = "http://13.201.37.105:8000/login/";
+    window.location = "http://localhost:8001/login/";
 })
 

@@ -77,17 +77,19 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         get epoch time for refresh token from payload and add to response data
         '''
         refresh_exp_time = refresh.payload["exp"]
-        refresh_exp_time_utc = datetime.datetime.fromtimestamp(refresh_exp_time)
-        refresh_exp_time_iso_format = refresh_exp_time_utc.isoformat()
-        data.update({"refresh_expires" : refresh_exp_time_iso_format})
+        # refresh_exp_time_utc = datetime.datetime.fromtimestamp(refresh_exp_time)
+        # refresh_exp_time_iso_format = refresh_exp_time_utc.isoformat()
+        # data.update({"refresh_expires" : refresh_exp_time_iso_format})
+        data.update({"refresh_expires" : refresh_exp_time})
         
         '''
         get epoch time for refresh token from payload and add to response data
         '''
         access_exp_time = refresh.access_token.payload["exp"]
-        access_exp_time_utc = datetime.datetime.fromtimestamp(access_exp_time)
-        access_exp_time_iso_format = access_exp_time_utc.isoformat()
-        data.update({"access_expires" : access_exp_time_iso_format})
+        # access_exp_time_utc = datetime.datetime.fromtimestamp(access_exp_time)
+        # access_exp_time_iso_format = access_exp_time_utc.isoformat()
+        # data.update({"access_expires" : access_exp_time_iso_format})
+        data.update({"access_expires" : access_exp_time})
         
         User = get_user_model()
         username = User.objects.get(id = refresh.access_token.payload["user_id"]).get_username()
