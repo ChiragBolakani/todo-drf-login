@@ -77,7 +77,7 @@ form_wrapper.addEventListener('submit', async (e)=>{
                 document.cookie = `refresh=${data.refresh};expires=${refresh_datetime};path=/`;
                 document.cookie = `user=${data.username};expires=${access_datetime};path=/`;
                 document.cookie = `user_id=${data.user_id};expires=${access_datetime};path=/`;
-                // window.location = "http://13.233.255.18:8000";
+                window.location = "http://13.233.255.18:8000";
 
             });
         }else{
